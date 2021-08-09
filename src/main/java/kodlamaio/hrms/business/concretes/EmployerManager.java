@@ -33,7 +33,7 @@ public class EmployerManager implements EmployersService {
             return new ErrorResult("zaten sistemde kayıtlısınız");
         }
         employerDao.save(employers);
-        return new SuccessResult("ekleme ba�ar�l� ");
+        return new SuccessResult("ekleme başarılı");
     }
 
     @Override
