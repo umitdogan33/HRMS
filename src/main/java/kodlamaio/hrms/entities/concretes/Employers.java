@@ -2,10 +2,11 @@ package kodlamaio.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.vladmihalcea.hibernate.type.json.JsonType;
+import lombok.*;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,10 +21,10 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
 @Table(name = "employers")
 
+@TypeDefs({
+        @TypeDef(name = "json", typeClass = JsonType.class)
+})
 public class Employers extends User{
-
-   /* @Column(name = "id")
-    private int id;*/
 
   @NotNull(message = "webSite alanı boş bırakılamaz")
     @Column(name = "web_site")
@@ -40,7 +41,17 @@ public class Employers extends User{
     @NotNull(message = "paswordRepeat alanı boş bırakılamaz")
     private String passwordRepeat;
 
+    @Column(name = "is_confirm")
+    @JsonIgnore
+    private Boolean isConfirm;
+
     @OneToMany(mappedBy = "employer")
   private List<JobAdvertisement> jobAdvertisements;
+
+
+  @Type(type = "json")
+  @Column(columnDefinition = "json",name = "updated_data")
+  private Employers updatedData;
+
 
 }

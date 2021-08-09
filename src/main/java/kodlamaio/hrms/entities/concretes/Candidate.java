@@ -18,8 +18,6 @@ import java.util.Date;
 @PrimaryKeyJoinColumn(name = "user_id",referencedColumnName = "user_id")
 @Table(name = "candidates")
 public class Candidate extends User{
-    @Column(name = "id")
-    private int id;
 
     @Column(name = "first_name")
     private String firstName;

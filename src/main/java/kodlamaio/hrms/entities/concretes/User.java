@@ -23,7 +23,6 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="user_id")
-    @JsonIgnore
     private int user_id;
 
     @Column(name="email")
@@ -40,7 +39,6 @@ public class User {
     private String password;
 
     @Column(name="is_active",columnDefinition = "boolean default true")
-    @JsonIgnore
     private Boolean isActive=true;
 
     @JsonIgnore
