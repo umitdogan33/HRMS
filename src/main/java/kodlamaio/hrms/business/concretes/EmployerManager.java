@@ -27,13 +27,13 @@ public class EmployerManager implements EmployersService {
     @Override
     public Result add(Employers employers) {
         if (!employers.getPassword().equals(employers.getPasswordRepeat())) {
-            return new ErrorResult("doğrulama hatası");
+            return new ErrorResult("doÄŸrulama hatasÄ±");
         }
         if (getByEmail(employers.getEmail()) != null) {
-            return new ErrorResult("zaten sistemde kayıtlısınız");
+            return new ErrorResult("zaten sistemde kayÄ±tlÄ±sÄ±nÄ±z");
         }
         employerDao.save(employers);
-        return new SuccessResult("ekleme başarılı ");
+        return new SuccessResult("ekleme baï¿½arï¿½lï¿½ ");
     }
 
     @Override
@@ -46,7 +46,7 @@ public class EmployerManager implements EmployersService {
         Employers employer = employerDao.getByUserId(id);
         employer.setIsConfirm(true);
         employerDao.save(employer);
-        return new SuccessResult("onaylama başarılı");
+        return new SuccessResult("onaylama baÅŸarÄ±lÄ±");
     }
 
     @Override
@@ -56,7 +56,7 @@ public class EmployerManager implements EmployersService {
         updatedUser.setUpdatedData(employer);
 
         employerDao.save(updatedUser);
-        return new SuccessResult("Güncelleme başarılı (aktivasyon işlemi için lütfen bekleyin.)");
+        return new SuccessResult("GÃ¼ncelleme baÅŸarÄ±lÄ± (aktivasyon iÃ§in onay bekleniyor)");
     }
 
     @Override
@@ -66,11 +66,11 @@ public class EmployerManager implements EmployersService {
             Employers updatedData = employer.getUpdatedData();
             //Saves updated data instead of main data and deletes updated data row.
             employerDao.save(updatedData);
-            return new SuccessResult("Kullanıcı onay durumu 'Onaylandı' olarak değiştirildi!");
+            return new SuccessResult("kullanÄ±cÄ± onay durumu OnaylandÄ± olarak deÄŸiÅŸtirildi");
         }
         employer.setIsActive(!employer.getIsActive());
         employerDao.save(employer);
-        return new SuccessResult("Kullanıcı onay durumu 'Onaylandı' olarak değiştirildi!");
+        return new SuccessResult("kullanÄ±cÄ± onay durumu OnaylandÄ± olarak deÄŸiÅŸtirildi");
     }
 
     @Override
