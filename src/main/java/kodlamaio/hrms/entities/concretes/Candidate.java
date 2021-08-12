@@ -51,7 +51,8 @@ public class Candidate extends User{
     @JsonIgnore
     private boolean is_deleted;
 
-
+    @Column(name = "image_url")
+    private String imageUrl;
 
     public Candidate() {
         this.createDate = LocalDate.now();

@@ -20,15 +20,6 @@ public class HrmsApplication {
 
     public static void main(String[] args) throws IOException {
         SpringApplication.run(HrmsApplication.class, args);
-
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "hrms2",
-                "api_key", "962842892274167",
-                "api_secret", "cTWLiwfzoudoF1JYzj1P3EzyEjA",
-                "secure", true));
-
-        File file = new File("images/my_image.png");
-        Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
     }
 
     @Bean
